@@ -1,10 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, TextInput, SafeAreaView, Button, FlatList } from 'react-native';
 import Characters from './src/pages/Characters';
+import React from "react";
 
 export default function App() {
+
+
+
   return (
-    <Characters />
+    <SafeAreaView>
+
+
+      <Characters />
+    </SafeAreaView>
   );
 }
 

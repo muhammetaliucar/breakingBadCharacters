@@ -5,15 +5,23 @@ import {
     Button,
     FlatList,
     Text,
-    Image,
     TouchableOpacity,
     Dimensions,
     ImageBackground,
+    Image
 } from "react-native";
 import axios from "axios";
+import Modal from "react-native-modal";
 
 const Characters = () => {
     const [charactersList, setCharactersList] = React.useState();
+    const [isModalVisible, setModalVisible] = React.useState(false);
+
+    const [deneme, setDeneme] = React.useState("");
+
+
+
+
 
     React.useEffect(() => {
         axios
@@ -21,16 +29,31 @@ const Characters = () => {
             .then((res) => setCharactersList(res.data));
     }, []);
 
+
+
+
     return (
         <SafeAreaView>
+            <View style={{ flex: 1 }}>
+                <Button title="Show modal" onPress={() => { setModalVisible(!isModalVisible) }} />
+
+                <Modal isVisible={isModalVisible} onBackdropPress={() => setModalVisible(false)}>
+                    <View style={{ flex: 0.5, justifyContent: "center", alignItems: "center", backgroundColor: "white", borderRadius: 50 }}>
+                        <Image style={{ width: 200, height: 200 }} source={{ uri: deneme.img }} />
+                        <Text style={{ marginTop: 20, fontSize: 19 }}>{deneme.name}</Text>
+
+                    </View>
+                </Modal>
+            </View>
+
             <FlatList
                 keyExtractor={(item) => item.char_id}
                 numColumns={3}
                 data={charactersList}
                 renderItem={({ item }) => (
                     <TouchableOpacity
-                        onPress={() => console.log(item.name)}
-                        style={{ flex: 1, alignItems: "center" }}
+                        onPress={() => { setDeneme(item), setModalVisible(!isModalVisible) }}
+                        style={{ flex: 1, alignItems: "center", borderRadius: 10 }}
                     >
                         <ImageBackground
                             source={{ uri: item.img }}
