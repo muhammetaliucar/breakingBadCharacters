@@ -38,9 +38,20 @@ const Characters = () => {
                 <Button title="Show modal" onPress={() => { setModalVisible(!isModalVisible) }} />
 
                 <Modal isVisible={isModalVisible} onBackdropPress={() => setModalVisible(false)}>
-                    <View style={{ flex: 0.5, justifyContent: "center", alignItems: "center", backgroundColor: "white", borderRadius: 50 }}>
-                        <Image style={{ width: 200, height: 200 }} source={{ uri: deneme.img }} />
-                        <Text style={{ marginTop: 20, fontSize: 19 }}>{deneme.name}</Text>
+                    <View style={{ flex: 0.5, justifyContent: "center", alignItems: "center", backgroundColor: "white", borderTopRightRadius: 50, borderTopLeftRadius: 50, borderBottomRightRadius: 50 }}>
+                        <View style={{ flexDirection: "row", justifyContent: "space-between", padding: 20 }}>
+                            <Image style={{ width: Dimensions.get("window").width * 0.3, height: Dimensions.get("window").height * 0.3, marginEnd: 10 }} source={{ uri: deneme.img }} />
+                            <View>
+                                <Text style={{ marginTop: 20, fontSize: 16 }}>Name:{deneme.name}</Text>
+                                <Text style={{ marginTop: 20, fontSize: 16 }}>Occupation:{deneme.occupation}</Text>
+                                <TouchableOpacity style={{ marginTop: 50 }}>
+                                    <Text>Favorite</Text>
+                                </TouchableOpacity>
+                            </View>
+
+
+
+                        </View>
 
                     </View>
                 </Modal>
